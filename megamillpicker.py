@@ -8,6 +8,9 @@ if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     getattr(ssl, '_create_unverified_context', None)): 
     ssl._create_default_https_context = ssl._create_unverified_context
 
+BIG = 71
+SMALL = 26
+
 print("Receiving quantum randomness...")
 time1 = time.time()
 quarray = []
@@ -18,8 +21,8 @@ for _i in range(10):
 	#print('time', time.time()-time0)
 #print('time_all', time.time()-time1)
 def first():
-		rand = [x%71 for x in quarray]
-		num = [x for x in range(1,71)]
+		rand = [x%BIG for x in quarray]
+		num = [x for x in range(1,BIG)]
 		cou = [(_i,rand.count(_i)) for _i in num]
 		#print('cou', cou)
 		mean = statistics.mean([x for (i,x) in cou])
@@ -32,9 +35,9 @@ def first():
 		return sort[0:5], sort[::-1][0:5]
 
 def second():
-		rand = [x%26 for x in quarray]
+		rand = [x%SMALL for x in quarray]
 		#print(rand)
-		num = [x for x in range(1,26)]
+		num = [x for x in range(1,SMALL)]
 		cou = [(_i,rand.count(_i)) for _i in num]
 		#print('cou', cou)
 		mean = statistics.mean([x for (i,x) in cou])

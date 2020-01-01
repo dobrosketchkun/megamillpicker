@@ -36,17 +36,23 @@ def random_int(min, max, n=2):
     return response_data['result']['random']['data']
 
 def line_maker(lottery):
-    
     if lottery == 'PowerBall':
         big = 69
         small = 26
     elif lottery == 'Mega':
         big = 70
         small = 25
+    elif lottery == 'test':
+        big = 10
+        small = 10
     else:
         print('Only PowerBall or Mega are supported!')
-    
-    a,b,c,d,e = random_int(1, big, n=5) # Доделать чтобы не выпадали одинаковые
+    rand_list = random_int(1, big, n=50)
+    seted_rand_list = []
+    for _ in rand_list:
+        if _ not in seted_rand_list:
+            seted_rand_list.append(_)
+    a, b, c, d, e = seted_rand_list[0:5]
     f = random_int(1, small, n=1)[0]
     print(f"\nYour numbers are {a}, {b}, {c}, {d}, {e} and {f}")
 

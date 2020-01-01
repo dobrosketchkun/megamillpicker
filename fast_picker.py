@@ -2,13 +2,13 @@ from http.client import HTTPSConnection
 from json import dumps, loads                                                  
 
 #Оригинал - https://teletype.in/@snakeblog/rJnA9jwEX , модификации - мои
+#Больше о формате запроса                                                        
+#https://api.random.org/json-rpc/1/introduction                                  
 
 API_TOKEN = ''  # Ваш токен                                                  
-                                                                               
-"""                                                                            
-Больше о формате запроса                                                        
-https://api.random.org/json-rpc/1/introduction                                  
-"""
+LINES = 1 # Number of lottery lines
+LOTTERY = 'PowerBall'
+
 
 def random_int(min, max, n=2):
     request_data = {  # Тело запроса                                                
@@ -54,9 +54,9 @@ def line_maker(lottery):
             seted_rand_list.append(_)
     a, b, c, d, e = seted_rand_list[0:5]
     f = random_int(1, small, n=1)[0]
-    print(f"\nYour numbers are {a}, {b}, {c}, {d}, {e} and {f}")
+    print(f" Your numbers are {a}, {b}, {c}, {d}, {e} and {f}")
 
 
-for _ in range(2):
+for _ in range(LINES):
     print('#' + str(_), end='')
-    line_maker('PowerBall')
+    line_maker(LOTTERY)
